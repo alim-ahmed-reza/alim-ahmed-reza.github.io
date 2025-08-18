@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,78 +7,91 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Alim Ahmed Reza — Senior Backend Developer</title>
   <style>
+    /* ====== Base ====== */
     :root {
-      --accent: #000;
+      --accent: #000; /* pure black for ATS-safe contrast */
       --muted: #444;
       --light: #777;
-      --divider: #ddd;
     }
     * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
     body {
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color: #111;
       line-height: 1.35;
-      margin: 0;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
     }
-    a { color: inherit; text-decoration: none; }
-    h1, h2, h3 { margin: 0 0 6px 0; line-height: 1.2; }
-    h1 { font-size: 28px; font-weight: 700; }
-    h2 { font-size: 13px; text-transform: uppercase; color: var(--muted); letter-spacing: 0.8px; }
+    a { color: inherit; text-decoration: none; border-bottom: 1px dotted #999; }
+    h1, h2, h3 { margin: 0 0 6px 0; line-height: 1.15; }
+    h1 { font-size: 22px; letter-spacing: 0.3px; }
+    h2 { font-size: 1.2em; text-transform: uppercase; color: var(--muted); letter-spacing: 0.8px; }
     h3 { font-size: 13px; }
     p { margin: 0 0 6px 0; }
     ul { margin: 6px 0 0 18px; padding: 0; }
     li { margin: 4px 0; }
 
+    /* ====== Page Layout ====== */
     .page {
-      max-width: 900px;
-      margin: 12px auto;
-      padding: 10px 20px;
+      max-width: 900px; /* good for A4 letter */
+      margin: 24px auto;
+      padding: 18px 22px;
     }
-
     .header {
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: 30% 70%;
+      gap: 8px 16px;
       align-items: center;
-      border-bottom: 1px solid var(--divider);
-      padding-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 8px;
       margin-bottom: 12px;
     }
+    .name-title { display: flex; flex-direction: column; gap: 4px; }
+    .title { font-weight: 600; color: var(--muted); font-size: 14px; }
 
-    .header-left { display: flex; flex-direction: column; }
-    .title { font-weight: 500; color: var(--muted); font-size: 15px; margin-top: 2px; }
     .contacts { font-size: 12px; color: var(--light); display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
+    .contacts span { white-space: nowrap; }
 
     .grid {
       display: grid;
-      grid-template-columns: 65% 32%;
-      gap: 16px;
-      border-left: 1px solid var(--divider);
-      padding-left: 16px;
+      grid-template-columns: 56% 1fr; /* Left column (primary) first per user's preference */
+      gap: 18px;
     }
 
     section { break-inside: avoid; }
-    .section { margin-bottom: 10px; }
+    .section { margin-bottom: 12px; }
 
-    .role-hdr { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; flex-wrap: wrap; }
-    .meta { font-size: 12px; color: var(--light); white-space: nowrap; }
-    .company { color: var(--muted); font-weight: 600; }
+    .role-hdr { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+    .role-hdr .meta { font-size: 12px; color: var(--light); white-space: nowrap; }
+    .company { color: var(--muted); font-weight: 600; display: block;}
+    .location { font-weight: 600; display: block;}
     .bullets { margin-top: 4px; }
 
     .taglist { display: flex; flex-wrap: wrap; gap: 6px 8px; margin-top: 6px; }
-    .tag { font-size: 11px; border: 1px solid #ccc; padding: 2px 6px; border-radius: 6px; }
+    .tag { font-size: 11px; border: 1px solid #ccc; padding: 2px 6px; border-radius: 6px; color: #222; }
 
     .edu-item, .proj-item { margin-bottom: 8px; }
     .meta-row { font-size: 12px; color: var(--light); }
 
-    @page { size: A4; margin: 10mm; }
-    @media print { .page { margin: 0; padding: 0; } }
-    @media (max-width: 720px) { .grid { grid-template-columns: 1fr; border-left: none; padding-left: 0; } }
+    /* ====== Print ====== */
+    @page { size: A4; margin: 12mm 10mm; }
+    @media print {
+      .page { margin: 0; padding: 0; }
+      a { border: none; }
+    }
+
+    /* ====== Small screens (still readable if viewed on mobile) ====== */
+    @media (max-width: 720px) {
+      .grid { grid-template-columns: 1fr; }
+      .contacts { justify-content: flex-start; }
+    }
   </style>
 </head>
 <body>
   <main class="page">
+    <!-- ===== Header ===== -->
     <header class="header">
-      <div class="header-left">
+      <div class="name-title">
         <h1>Alim Ahmed Reza</h1>
         <div class="title">Senior Backend Developer</div>
       </div>
@@ -90,78 +105,138 @@
     </header>
 
     <div class="grid">
+      <!-- ===== Left Column: Summary & Experience (primary) ===== -->
       <div>
+        <!-- Summary -->
         <section class="section">
           <h2>Summary</h2>
-          <p>Backend-focused Software Engineer with 6+ years building scalable fintech and ERP systems. Strong in Java/Spring Boot, microservices, testing, and CI/CD. Known for refactoring legacy services, leading code reviews, and introducing code quality tooling to improve reliability and maintainability. Cross-functional communicator with experience collaborating directly with clients and stakeholders.</p>
-          <div class="taglist">
+          <p>
+            Backend-focused Software Engineer with 6+ years building scalable fintech and ERP systems. Strong in Java/Spring Boot, microservices, testing, and CI/CD. Known for refactoring legacy services, leading code reviews, and introducing code quality tooling to improve reliability and maintainability. Cross-functional communicator with experience collaborating directly with clients and stakeholders.
+          </p>
+          <div class="taglist" aria-label="Core Skills">
             <span class="tag">Java</span>
             <span class="tag">Spring Boot</span>
             <span class="tag">Microservices</span>
             <span class="tag">Docker</span>
             <span class="tag">JUnit</span>
-            <span class="tag">CI/CD</span>
+            <span class="tag">CI/CD (Jenkins)</span>
             <span class="tag">Redis</span>
             <span class="tag">Kafka</span>
           </div>
         </section>
 
+        <!-- Experience -->
         <section class="section">
           <h2>Experience</h2>
+
           <div class="exp-item">
             <div class="role-hdr">
               <h3>Sr. Software Engineer · <span class="company">Kona Software Lab Ltd</span></h3>
-              <div class="meta">Apr 2022 – Present · Dhaka</div>
+              <div class="meta">Apr 2022 – Present <span class="location">Dhaka, Bangladesh</span></div>
             </div>
+            <p class="meta-row">Fintech product engineering across web and mobile.</p>
             <ul class="bullets">
-              <li>Redesigned crypto platform UI, increasing client satisfaction by 70%; built Flutter app for mobile parity.</li>
-              <li>Re-architected notification service, boosting engagement by 80% and reducing tickets by 15%.</li>
-              <li>Refactored Spring Boot services with 75% unit test coverage.</li>
-              <li>Introduced SonarQube to improve code quality.</li>
+              <li>Re-architected notification service for client/admin portals, boosting engagement by ~80% and reducing support tickets by ~15%.</li>
+              <li>Refactored Spring Boot services and added comprehensive unit tests (≈75% coverage) to improve reliability and maintainability.</li>
+              <li>Ran proactive code reviews and introduced SonarQube, streamlining quality gates and review flow.</li>
+              <li>Redesigned user-facing site and product portal for a crypto trading platform, increasing client satisfaction by ~70%; built a Flutter app for mobile parity.</li>
             </ul>
           </div>
+
           <div class="exp-item">
             <div class="role-hdr">
               <h3>Software Engineer · <span class="company">RedDot Digital Ltd</span></h3>
-              <div class="meta">Jul 2021 – Apr 2022 · Dhaka</div>
+              <div class="meta">Jul 2021 – Apr 2022 <span class="location">Dhaka, Bangladesh</span></div>
             </div>
+            <p class="meta-row">Telecom solutions development and operations.</p>
             <ul class="bullets">
-              <li>Maintained pipelines with 95% on-time releases.</li>
-              <li>Integrated payment services into client sites.</li>
+              <li>Maintained development/deployment pipelines, achieving ~95% on-time releases and reducing post-release issues by ~25%.</li>
+              <li>Integrated payment services into client sites to enable streamlined transactions.</li>
             </ul>
           </div>
+
           <div class="exp-item">
             <div class="role-hdr">
               <h3>Software Engineer · <span class="company">CoKreates Ltd</span></h3>
-              <div class="meta">May 2019 – Jul 2021 · Dhaka</div>
+              <div class="meta">May 2019 – Jul 2021 <span class="location">Dhaka, Bangladesh</span></div>
             </div>
+            <p class="meta-row">Government-scale ERP (microservices) delivery.</p>
             <ul class="bullets">
-              <li>Developed ERP microservices; improved scalability by 15%.</li>
-              <li>Automated deployments with bash scripts.</li>
+              <li>Contributed to full‑stack microservice-based ERP; supported requirements/stakeholder sessions, reducing bottlenecks by ~25% and improving scalability/performance by ~15%.</li>
+              <li>Authored bash scripts and automated deployment pipelines to elevate developer efficiency.</li>
             </ul>
           </div>
         </section>
       </div>
 
+      <!-- ===== Right Column: Skills, Projects, Education ===== -->
       <div>
+        <!-- Skills -->
         <section class="section">
           <h2>Skills</h2>
           <div class="taglist">
-            <span class="tag">Spring Boot</span><span class="tag">Java</span><span class="tag">Microservices</span><span class="tag">Redis</span><span class="tag">Kafka</span><span class="tag">Git</span><span class="tag">Bash</span><span class="tag">Jenkins</span><span class="tag">Docker</span><span class="tag">JUnit</span><span class="tag">React</span><span class="tag">Next.js</span><span class="tag">Angular</span>
+            <span class="tag">Spring Boot</span>
+            <span class="tag">Java</span>
+            <span class="tag">Microservices</span>
+            <span class="tag">Redis</span>
+            <span class="tag">Kafka</span>
+            <span class="tag">Git</span>
+            <span class="tag">Bash</span>
+            <span class="tag">Jenkins</span>
+            <span class="tag">Docker</span>
+            <span class="tag">JUnit</span>
+            <span class="tag">E2E Testing</span>
+            <span class="tag">React</span>
+            <span class="tag">Next.js</span>
+            <span class="tag">Angular</span>
           </div>
         </section>
+
+        <!-- Projects (backend-first, then breadth) -->
         <section class="section">
           <h2>Projects</h2>
-          <div class="proj-item"><strong>CMS (Backend)</strong><p>Improved read-heavy API performance for banking card management.</p></div>
-          <div class="proj-item"><strong>Kona Integrated Portal (Backend)</strong><p>Multi-tenant fintech portal; optimized notification system.</p></div>
-          <div class="proj-item"><strong>GRP ERP (Full-stack)</strong><p>Govt ERP; built Django reports, automation scripts, and CI/CD pipeline.</p></div>
-          <div class="proj-item"><strong>Kona Token Trade (Frontend & App)</strong><p>Crypto platform; trading view, XSS security, Next.js migration, Flutter UI.</p></div>
-          <div class="proj-item"><strong>Kona Plate (Frontend)</strong><p>API marketplace; developed tree-view API explorer.</p></div>
+
+          <div class="proj-item">
+            <strong>CMS — Card Management System (Backend)</strong>
+            <p>Banking integration service; substantially improved data-fetching policies for read‑heavy APIs.</p>
+          </div>
+
+          <div class="proj-item">
+            <strong>Kona Integrated Portal (Backend)</strong>
+            <p>Multi‑tenant portal for onboarding/managing fintech clients; improved backend notification system throughput.</p>
+          </div>
+
+          <div class="proj-item">
+            <strong>GRP — Government ERP (Full‑stack)</strong>
+            <p>Piloted at Planning Division; built robust reporting module (Django), team‑wide bash automation, and automated deployment pipeline; frequent stakeholder sessions to unblock delivery.</p>
+          </div>
+
+          <div class="proj-item">
+            <strong>Kona Token Trade (Frontend & App)</strong>
+            <p>Crypto trading platform; delivered multilateral trading view and buy/sell flows; migrated from React (JS) to Next.js (TS) with security hardening against XSS; rebuilt mobile UI in Flutter.</p>
+          </div>
+
+          <div class="proj-item">
+            <strong>Kona Plate (Frontend)</strong>
+            <p>Open API platform for selling and sandbox testing; built complex tree‑style API explorer component.</p>
+          </div>
         </section>
+
+        <!-- Education -->
         <section class="section">
           <h2>Education</h2>
-          <div class="edu-item"><strong>MSc in CSE</strong><div class="meta-row">North South University · Jan 2025 – Present</div></div>
-          <div class="edu-item"><strong>BSc in CSE</strong><div class="meta-row">AIUB · Jan 2016 – Jan 2020</div></div>
+          <div class="edu-item">
+            <strong>MSc in Computer Science & Engineering</strong>
+            <div class="meta">North South University </div>
+            <span class="meta-row">Jan 2025 – Present</span>
+            <div class="meta-row">Dhaka, Bangladesh</div>
+          </div>
+          <div class="edu-item">
+            <strong>BSc in Computer Science & Engineering</strong>
+            <div class="meta">American International University – Bangladesh </div>
+            <span class="meta-row">Jan 2016 – Jan 2020</span>
+            <div class="meta-row">Dhaka, Bangladesh</div>
+          </div>
         </section>
       </div>
     </div>
