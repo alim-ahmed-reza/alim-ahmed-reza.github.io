@@ -5,7 +5,7 @@ const ResumeContext = createContext();
 const defaultResumeData = {
   personalInfo: {
     name: 'Alim Ahmed Reza',
-    title: 'Senior Backend Developer',
+    title: 'Senior FullStack Developer',
     email: 'reza.alimahmed@gmail.com',
     phone: '+880 1778 746 494',
     linkedin: 'linkedin.com/in/alim-ahmed-reza-asif',
@@ -24,12 +24,12 @@ const defaultResumeData = {
       location: 'Dhaka, Bangladesh',
       duration: 'Apr 2022 – Present',
       description: 'Fintech product engineering across web and mobile.',
-      bullets: [
-        'Re-architected notification service for client/admin portals, boosting engagement by ~80% and reducing support tickets by ~15%.',
-        'Refactored Spring Boot services and added comprehensive unit tests (≈75% coverage) to improve reliability and maintainability.',
-        'Ran proactive code reviews and introduced SonarQube, streamlining quality gates and review flow.',
-        'Redesigned user-facing site and product portal for a crypto trading platform, increasing client satisfaction by ~70%; built a Flutter app for mobile parity.',
-      ],
+      bullets: [  
+            "Re-designed notification service for client/adminportals, boosting performance by ~40%",
+            "Refactored Spring Boot services and addedcomprehensive unit tests (≈75% coverage) toimprove reliability and maintainability",
+            "Ran proactive code reviews and introducedSonarQube, streamlining quality gates and reviewflow",
+            "Redesigned user-facing site and product portal for acrypto trading platform, increasing overallperformance by ~70%; built a Flutter app for mobileparity"
+    ],
     },
     {
       id: 2,
@@ -83,6 +83,11 @@ const defaultResumeData = {
       title: 'Kona Plate (Frontend)',
       description: 'Open API platform for selling and sandbox testing; built complex tree‑style API explorer component.',
     },
+    {
+      id: 6,
+      title: 'Altair (Full-stack)',
+      description: 'Marketplace for 3D object for free download and upload and hiring talents. Led a small team of 4 members and maintained full-stack development.',
+    }
   ],
   education: [
     {
