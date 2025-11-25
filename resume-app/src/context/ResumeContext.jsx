@@ -60,7 +60,7 @@ const defaultResumeData = {
   projects: [
     {
       id: 1,
-      title: 'CMS — Card Management System (Backend)',
+      title: 'CMS — Card Management System (Full-stack)',
       description: 'Banking integration service; substantially improved data-fetching policies for read‑heavy APIs.',
     },
     {
